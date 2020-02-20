@@ -1,47 +1,162 @@
-// Toggles
-//
-// Used in conjunction with global variables to enable certain theme features.
+//    Mixins
+@mixin transition($args: all 0.4s ease 0s) {
+	-webkit-transition: $args;
+	-moz-transition: $args;
+	-o-transition: $args;
+	transition: $args;
+}
 
-// Vendor
-@import "vendor/rfs";
+@mixin transition-duration($args1, $args2) {
+	-webkit-transition-duration: $args1, $args2;
+	-moz-transition-duration: $args1, $args2;
+	-o-transition-duration: $args1, $args2;
+	transition-duration: $args1, $args2;
+}
 
-// Deprecate
-@import "mixins/deprecate";
+@mixin transition-delay($args1, $args2) {
+	-webkit-transition-delay: $args1, $args2;
+	-moz-transition-delay: $args1, $args2;
+	-o-transition-delay: $args1, $args2;
+	transition-delay: $args1, $args2;
+}
 
-// Utilities
-@import "mixins/breakpoints";
-@import "mixins/hover";
-@import "mixins/image";
-@import "mixins/badge";
-@import "mixins/resize";
-@import "mixins/screen-reader";
-@import "mixins/size";
-@import "mixins/reset-text";
-@import "mixins/text-emphasis";
-@import "mixins/text-hide";
-@import "mixins/text-truncate";
-@import "mixins/visibility";
+@mixin transition-property($args1, $args2) {
+	-webkit-transition-property: $args1, $args2;
+	-moz-transition-property: $args1, $args2;
+	-o-transition-property: $args1, $args2;
+	transition-property: $args1, $args2;
+}
 
-// Components
-@import "mixins/alert";
-@import "mixins/buttons";
-@import "mixins/caret";
-@import "mixins/pagination";
-@import "mixins/lists";
-@import "mixins/list-group";
-@import "mixins/nav-divider";
-@import "mixins/forms";
-@import "mixins/table-row";
+@mixin border-gradient($deg, $args1, $args2) {
+	border-image: -webkit-linear-gradient($deg, $args1, $args2);
+	border-image: -moz-linear-gradient($deg, $args1, $args2);
+	border-image: -o-linear-gradient($deg, $args1, $args2);
+	border-image: linear-gradient($deg, $args1, $args2);
+}
 
-// Skins
-@import "mixins/background-variant";
-@import "mixins/border-radius";
-@import "mixins/box-shadow";
-@import "mixins/gradients";
-@import "mixins/transition";
+@mixin gradient($deg, $args1, $args2) {
+	background: -webkit-linear-gradient($deg, $args1, $args2);
+	background: -moz-linear-gradient($deg, $args1, $args2);
+	background: -o-linear-gradient($deg, $args1, $args2);
+	background: linear-gradient($deg, $args1, $args2);
+}
 
-// Layout
-@import "mixins/clearfix";
-@import "mixins/grid-framework";
-@import "mixins/grid";
-@import "mixins/float";
+@mixin gradient2($deg, $args1,$args2, $args3) {
+	background: -webkit-linear-gradient($deg, $args1, $args2, $args3);
+	background: -moz-linear-gradient($deg, $args1, $args2, $args3);
+	background: -ms-linear-gradient($deg, $args1, $args2, $args3);
+	background: -o-linear-gradient($deg, $args1, $args2, $args3);
+	background: linear-gradient($deg, $args1, $args2, $args3);
+}
+
+@mixin transform($transform) {
+	-webkit-transform: $transform;
+	-moz-transform: $transform;
+	-ms-transform: $transform;
+	-o-transform: $transform;
+	transform: $transform;
+}
+
+@mixin transform-origin($value) {
+	-webkit-transform-origin: $value;
+	-moz-transform-origin: $value;
+	-ms-transform-origin: $value;
+	-o-transform-origin: $value;
+	transform-origin: $value;
+}
+
+@mixin backface-visibility($value) {
+	-webkit-backface-visibility: $value;
+	-moz-backface-visibility: $value;
+	backface-visibility: $value;
+}
+
+@mixin calc ($property, $expression) {
+	#{$property}: -webkit-calc(#{$expression});
+	#{$property}: -moz-calc(#{$expression});
+	#{$property}: calc(#{$expression});
+}
+
+@mixin filter ($value) {
+	filter: $value;
+	-o-filter: $value;
+	-ms-filter: $value;
+	-moz-filter: $value;
+	-webkit-filter: $value;
+}
+
+@mixin keyframes ($animation-name) {
+	@-webkit-keyframes #{$animation-name} {
+		@content;
+	}
+	@-moz-keyframes #{$animation-name} {
+		@content;
+	}
+	@-o-keyframes #{$animation-name} {
+		@content;
+	}
+	@keyframes #{$animation-name} {
+		@content;
+	}
+}
+
+// Placeholder Mixins
+@mixin placeholder {
+	&.placeholder {
+		@content;
+	}
+	&:-moz-placeholder {
+		@content;
+	}
+	&::-moz-placeholder {
+		@content;
+	}
+	&::-webkit-input-placeholder {
+		@content;
+	}
+}
+
+@mixin animation ($args) {
+	-webkit-animation: $args;
+	-moz-animation: $args;
+	-o-animation: $args;
+	animation: $args;
+}
+
+/* Medium Layout: 1280px */
+
+@mixin medium {
+	@media (min-width: 992px) and (max-width: 1400px) {
+		@content;
+	}
+}
+
+/* Tablet Layout: 768px */
+
+@mixin tablet {
+	@media (min-width: 768px) and (max-width: 1200px) {
+		@content;
+	}
+}
+
+/* Mobile Layout: 320px */
+
+@mixin mobile {
+	@media (max-width: 767px) {
+		@content;
+	}
+}
+
+/* Wide Mobile Layout: 480px */
+
+@mixin wide-mobile {
+	@media (min-width: 480px) and (max-width: 767px) {
+		@content;
+	}
+}
+
+@mixin cmq ($min, $max) {
+	@media (min-width: $min) and (max-width: $max) {
+		@content;
+	}
+}

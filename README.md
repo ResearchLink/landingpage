@@ -1,2 +1,2 @@
-# researchlinksurvey
-v0.0.1 survey
+# 静态页面
+展示用

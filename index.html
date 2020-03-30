@@ -122,7 +122,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 
-                <div class="col-lg-6">
+                <div class="col-lg-6" style="display: none;" id="proj_1">
                     <div class="row">
                         <h2>自然语言处理项目实战</h2>  
                         <h5>——手把手带你进入AI科研世界</h5>  
@@ -143,6 +143,26 @@
                         
                     </div>
                 </div>
+                <div class="col-lg-6" style="display: block;" id='proj_2'>
+                    <div class="row">
+                        <h2>人工智能科研项目</h2>  
+                        <h5>——手把手带你进入AI科研世界</h5>  
+                        <p>人工智能(AI)对医学诊断, 机器人技术, 网络搜索，人脸识别，机器翻译和自动驾驶等领域都有重大影响。
+                            通过这个课程，你将学习到人工智能的基础概念。具体主题包括机器学习，搜索算法，马尔科夫决策过程和博弈（游戏）。
+                            你会获得人工智能研究所需的技巧和知识。在课程 的最后，你会做一个自主设计的高质量的科研项目。
+                            该项目有助于学生发表论文，申请研究生，以及寻找机器学习工程师方面的工作。本课程将会使用 ​Python​ 语言进行教学。 
+                        </p>
+                        <p>Artificial intelligence (AI) has had a huge impact in many areas, including medical diagnosis, 
+                            robotics, web search, face recognition, machine translation and autonomous driving. 
+                            Through this course, you will learn foundational concepts of Artificial Intelligence. 
+                            Specific topics include Machine learning, search algorithms, Markov decision processes and game playing. 
+                            You will learn fundamental skills and knowledge needed to do AI research. Furthermore, 
+                            you will conduct a customized and high-quality research project in the end, which can help you publish papers, 
+                            apply for graduate schools, or find related jobs in the future. This course is taught in Python​ language. </p>
+                        
+                    </div>
+                </div>
+                
                 <div class="offset-lg-2 col-lg-4 col-md-6">
                     <div class="client-info">
                         <div class="d-flex mb-45">
@@ -154,7 +174,8 @@
                                 <span class="fa fa-book"></span>
                             </div>
                             <div class="ml-15">
-                                <h5>第一期</h5>
+                                <button class="btn btn-info btn-sm" onclick="display_one('proj_1', ['proj_2'])">第一期</button>
+                                <button class="btn btn-info btn-sm" onclick="display_one('proj_2', ['proj_1'])">第二期</button>
                             </div>
                         </div>
                     </div>
@@ -416,30 +437,41 @@
 </script>
 
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#btn_upload").click(function (event) {
-                event.preventDefault();
-                var form_data = new FormData($('#fileUploadForm')[0]);
-                form_data.append('post_id', '-1');
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/upload',
-                    data: form_data,
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function (response) {
-                        if (response != 0) {
-                            alert('file uploaded');
-                        } else {
-                            alert('file not uploaded');
-                        }
-                    },
-                });
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btn_upload").click(function (event) {
+            event.preventDefault();
+            var form_data = new FormData($('#fileUploadForm')[0]);
+            form_data.append('post_id', '-1');
+            $.ajax({
+                type: 'POST',
+                url: '/api/upload',
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (response) {
+                    if (response != 0) {
+                        alert('file uploaded');
+                    } else {
+                        alert('file not uploaded');
+                    }
+                },
             });
         });
-    </script>
+    });
+</script>
+
+<script>
+    function display_one(id_display, id_hidden) {
+        document.getElementById(id_display).style.display = "block";
+
+        for(i in id_hidden) {
+            document.getElementById(id_hidden[i]).style.display = "none";
+        }
+    }
+
+</script>
 
 </body>
 </html>
